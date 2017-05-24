@@ -1,0 +1,6 @@
+.BoardCell {
+	background-color: lightBlue;
+	color: black;
+	padding: 10px;
+	margin: 20px;
+}

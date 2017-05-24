@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Row, Col} from 'react-bootstrap';
-import Timer from './Timer';
+import TimerContainer from './TimerContainer';
 import PuzzleContainer from './PuzzleContainer';
 import MovesContainer from './MovesContainer';
 
@@ -13,7 +13,7 @@ class App extends Component {
 		return (
 			<Row>
 				<Col xs={3} lg={3}>
-					<Timer />
+					<TimerContainer />
 				</Col>
 				<Col xs={3} lg={9}>
 					<PuzzleContainer />
