@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import '../styles/MovesContainer.css';
 
 class Moves extends Component {
 	constructor(props){
@@ -8,16 +9,19 @@ class Moves extends Component {
 	}
 
 	formatMove(move){
-		return "(" + move[0] + "," + move[1] + ")";
+		return  move[0] + "," + move[1];
 	}
 
 	render() {
 		var self = this;
 		return (
-			<div>
-				{this.props.moves.map(function(move){
-					return <div>from {self.formatMove(move.from)} to {self.formatMove(move.to)}</div>
-				})}
+			<div className="MovesContainer">
+				<div className="MovesHeader">Moves</div>
+				<div className="MovesList">
+					{this.props.moves.map(function(move){
+						return <div>{self.formatMove(move.from)} to {self.formatMove(move.to)}</div>
+					})}
+				</div>
 			</div>
 		
 		)

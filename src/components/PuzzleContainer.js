@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {setInitialBoard, setInitialized, loadState} from '../state/actions';
 import Board, {MOVES, getInitialBoard} from './Board';
+import '../styles/PuzzleContainer.css';
 
 class Puzzle extends Component {
 	constructor(props){
@@ -17,7 +18,7 @@ class Puzzle extends Component {
 	}
 	render() {
 		return (
-			<div>
+			<div className="PuzzleContainer">
 				<Board board={this.props.board} />
 			</div>
 		
@@ -42,14 +43,14 @@ function mapDispatchToProps(dispatch){
 	return {
 		initializeBoard: function(){
 			var persistedState = localStorage.getItem("adwise");
-			// if(persistedState != undefined){
-			// 	persistedState = JSON.parse(persistedState);
-			// 	dispatch(loadState(persistedState));
-			// }
-			// else{
+			if(persistedState != undefined){
+				persistedState = JSON.parse(persistedState);
+				dispatch(loadState(persistedState));
+			}
+			else{
 				dispatch(setInitialBoard(getInitialBoard()));
 				dispatch(setInitialized(true));
-			// }
+			}
 		}
 	}
 }

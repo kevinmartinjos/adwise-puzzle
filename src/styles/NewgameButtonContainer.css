@@ -1,0 +1,5 @@
+.NewgameButtonContainer{
+	display: flex;
+	justify-content: left;
+	margin-top: 20px;
+}

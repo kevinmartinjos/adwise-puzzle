@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Col} from 'react-bootstrap';
 import BoardRow from './BoardRow';
 import {setWon} from '../state/actions';
+import '../styles/Board.css';
 
 class Board extends Component {
 	constructor(props){
@@ -24,7 +26,9 @@ class Board extends Component {
 					return <BoardRow key={rowId} rowId={rowId} row={row} won={self.props.hasWon}/>
 				})}
 				{this.props.hasWon &&
-					<div>You Won!</div>
+					<Col lg={12}>
+						<div className="winMessage">You Won!</div>
+					</Col>
 				}
 			</div>
 		
@@ -44,6 +48,10 @@ export const MOVES = {
 	DOWN: 4
 };
 
+/*
+	TODO: Get board dimensions as arguments. Would be trivial to increase/decrease 
+	difficulty level this way.
+*/
 export function getInitialBoard(){
 	var board = [];
 	var m_rows = 3;
@@ -122,7 +130,10 @@ function scrambleBoard(board, m_rows, m_cols){
 	var blank = board[m_rows - 1, m_cols - 1];
 	var newConfig = move(board, MOVES.LEFT, [m_rows - 1, m_cols - 1], m_rows, m_cols);	
 
-	for(var i=0; i < 2; i++){
+	//an arbitrary number. Can be generated from the board dimensions. Some other day
+	var MAX_MOVES = 200;
+
+	for(var i=0; i < MAX_MOVES; i++){
 		var moveType = Math.floor(Math.random() * (5 - 1)) + 1;
 		board = newConfig.board;
 		var blankPos = newConfig.blankPos;

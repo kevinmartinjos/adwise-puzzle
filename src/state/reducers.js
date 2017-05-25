@@ -1,5 +1,5 @@
-import {SET_INITIAL_BOARD, SET_INITIALIZED, LOAD_STATE, DO_MOVE, ADD_TIME, WON} from './actions';
-import {move} from '../components/Board';
+import {SET_INITIAL_BOARD, SET_INITIALIZED, LOAD_STATE, DO_MOVE, ADD_TIME, WON, NEW_GAME} from './actions';
+import {move, getInitialBoard} from '../components/Board';
 
 const initialState = {
 	board: [],
@@ -44,6 +44,14 @@ export function AppState(state, action){
 			newState = Object.assign({}, state, {
 				hasWon: action.hasWon
 			});
+			break;
+		case NEW_GAME:
+			var newPuzzle = getInitialBoard();
+			newState = Object.assign({}, initialState);
+			newState.board = newPuzzle.board;
+			newState.blankPos = newPuzzle.blankPos;
+			newState.dimensions = newPuzzle.dimensions;
+			newState.initialized = true;
 			break;
 		case LOAD_STATE:
 			newState = Object.assign({}, action.state);

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {addTime} from '../state/actions';
+import {Row, Col} from 'react-bootstrap';
+import '../styles/TimerContainer.css';
 
 class Timer extends Component {
 	constructor(props){
@@ -28,14 +30,10 @@ class Timer extends Component {
 		};
 	}
 
-	componentWillMount(){
-		this.props.incrementTime();
-	}
-
 	componentDidMount(){
 		var self = this;
 		setInterval(function(){
-			if(!self.props.hasWon){
+			if(!self.props.hasWon && self.props.initialized){
 				self.props.incrementTime();
 			}
 		}, 1000);
@@ -44,8 +42,17 @@ class Timer extends Component {
 	render() {
 		var time = this.formatSeconds(this.props.timeElapsed);
 		return (
-			<div>
-				{time.hours}:{time.minutes}:{time.seconds}
+			<div className="TimerContainer">
+				<Col lg={6}>
+					<div className="TimerHeader">
+						Time:
+					</div>
+				</Col>
+				<Col lg={6}>
+					<div className="Timer">
+						{time.hours}:{time.minutes}:{time.seconds}
+					</div>
+				</Col>
 			</div>
 		)
 	}
@@ -54,7 +61,8 @@ class Timer extends Component {
 function mapStateToProps(state){
 	return {
 		timeElapsed: state.timeElapsed,
-		hasWon: state.hasWon
+		hasWon: state.hasWon,
+		initialized: state.initialized
 	};
 }
 

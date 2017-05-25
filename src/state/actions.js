@@ -4,6 +4,7 @@ export const LOAD_STATE = "LOAD_STATE";
 export const DO_MOVE = "DO_MOVE";
 export const ADD_TIME = "ADD_TIME";
 export const WON = "WON";
+export const NEW_GAME = "NEW_GAME";
 
 export function setInitialBoard(initialBoard){
 	return {
@@ -45,4 +46,10 @@ export function setWon(hasWon){
 		type: WON,
 		hasWon
 	}
+}
+
+export function startNewGame(){
+	return {
+		type: NEW_GAME
+	};
 }

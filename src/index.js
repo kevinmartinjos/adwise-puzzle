@@ -12,7 +12,6 @@ const store = createStore(
   AppState,
   undefined,
   compose(
-    applyMiddleware(logger)
   )
 )
 // persistStore(store, {storage: asyncLocalStorage});

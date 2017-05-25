@@ -1,0 +1,10 @@
+.MoveCount{
+	display: flex;
+	justify-content: left;
+	font-size: 16px;
+	margin-top: 20px;
+}
+
+.MoveCount .count{
+	color: #777;
+}

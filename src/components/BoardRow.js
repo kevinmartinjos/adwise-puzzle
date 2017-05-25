@@ -16,8 +16,8 @@ class BoardRow extends Component {
 					var style = {};
 					if(val == "_"){
 						style = {
-							backgroundColor: "lightGreen",
-							color: "lightGreen"
+							backgroundColor: "#a5f3cb",
+							color: "#a5f3cb"
 						};
 					}					
 					return <BoardCellContainer key={[self.props.rowId, colId]} cellValue={val} rowId={self.props.rowId} colId={colId} style={style} won={self.props.won}/>

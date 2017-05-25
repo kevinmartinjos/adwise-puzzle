@@ -1,0 +1,16 @@
+.TimerContainer{
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	justify-content: left;
+	margin-top: 25px;
+}
+
+.Timer{
+	color: #777;
+}
+
+/*.leftPanel.col-xs-12 .TimerContainer{
+	display: flex;
+	justify-content: center;
+}*/

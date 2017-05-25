@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import '../styles/BoardCell.css';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import {doMove} from '../state/actions';
 import {MOVES} from './Board';
+import '../styles/BoardCell.css';
 
 class BoardCell extends Component {
 	constructor(props){
 		super(props);
 		this.onClick = this.onClick.bind(this);
 		this.calcDirection = this.calcDirection.bind(this);
+		this.getAnimation = this.getAnimation.bind(this);
 		this.state = {
 			gameOver: false
 		};
@@ -45,9 +47,33 @@ class BoardCell extends Component {
 		}
 	}
 
+	getAnimation(){
+		var classList = "";
+		var lastMove = null;
+		if(this.props.allMoves.length > 0){
+			lastMove = this.props.allMoves[this.props.allMoves.length - 1]
+		}
+		if(lastMove != null){
+			var from = lastMove.from;
+			var to = lastMove.to;
+			var row = this.props.rowId;
+			var col = this.props.colId;
+			if(to[0] === row && to[1] === col){
+				classList = "movedTo"
+			}
+			else if(from[0] === row && from[1] === col){
+				classList = "movedFrom"
+			}
+		}
+
+		return classList;
+	}
 	render() {
+		var animationClass = this.getAnimation();
 		return (
-			<span onClick={this.onClick} className="BoardCell" style={this.props.style}>{this.props.cellValue}</span>
+			<span onClick={this.onClick} key={[this.props.rowId, this.props.colId]} className={"BoardCell " + animationClass}  style={this.props.style}>
+				{this.props.cellValue}
+			</span>
 		)
 	}
 }
@@ -65,7 +91,8 @@ BoardCell.propTypes = {
 
 function mapStateToProps(state){
 	return {
-		blankPos: state.blankPos
+		blankPos: state.blankPos,
+		allMoves: state.moves
 	};
 }
 
