@@ -1,6 +1,8 @@
 A minimalistic 8-puzzle
 
-####Try it out
+[live demo](http://lonesword.in/adwise-puzzle)
+
+#### Try it out
 
     1. npm install
     2. npm run start - starts dev server
